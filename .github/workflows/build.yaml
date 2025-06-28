@@ -24,7 +24,7 @@ jobs:
 
       - name: Build .so for all ABIs
         run: |
-          ./android-ndk-r27b/ndk-build NDK_PROJECT_PATH=. APP_ABI="armeabi-v7a,arm64-v8a,x86,x86_64" APP_PLATFORM=android-21 -j$(nproc)
+          ./android-ndk-r27b/ndk-build NDK_PROJECT_PATH=./Android.mk APP_ABI="armeabi-v7a,arm64-v8a,x86,x86_64" APP_PLATFORM=android-21 -j$(nproc)
 
       - name: Upload armeabi-v7a
         uses: actions/upload-artifact@v4
