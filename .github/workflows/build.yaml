@@ -26,6 +26,12 @@ jobs:
         run: |
           mkdir -p jni
           cp Android.mk jni/Android.mk
+          mkdir -p jni/yaml
+          cp -r third-part/yaml/* jni/yaml/ || true
+          mkdir -p jni/lwip
+          cp -r third-part/lwip/* jni/lwip/ || true
+          mkdir -p jni/hev-task-system
+          cp -r src/hev-task-system/* jni/hev-task-system/ || true
 
       - name: Build .so for all ABIs
         run: |
