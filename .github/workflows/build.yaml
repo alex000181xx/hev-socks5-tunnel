@@ -1,4 +1,4 @@
-name: Build Shared Libraries
+name: Build Android Shared Libraries
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
 
       - name: Build .so for all ABIs
         run: |
-          ./android-ndk-r27b/ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=./jni/Android.mk APP_ABI="armeabi-v7a,arm64-v8a,x86,x86_64" -j$(nproc)
+          ./android-ndk-r27b/ndk-build NDK_PROJECT_PATH=. APP_ABI="armeabi-v7a,arm64-v8a,x86,x86_64" APP_PLATFORM=android-21 -j$(nproc)
 
       - name: Upload armeabi-v7a
         uses: actions/upload-artifact@v4
@@ -32,7 +32,7 @@ jobs:
           name: libhev-socks5-tunnel-android-armeabi-v7a.so
           path: libs/armeabi-v7a/libhev-socks5-tunnel.so
           if-no-files-found: error
-          retention-days: 5
+          retention-days: 7
 
       - name: Upload arm64-v8a
         uses: actions/upload-artifact@v4
@@ -40,7 +40,7 @@ jobs:
           name: libhev-socks5-tunnel-android-arm64-v8a.so
           path: libs/arm64-v8a/libhev-socks5-tunnel.so
           if-no-files-found: error
-          retention-days: 5
+          retention-days: 7
 
       - name: Upload x86
         uses: actions/upload-artifact@v4
@@ -48,7 +48,7 @@ jobs:
           name: libhev-socks5-tunnel-android-x86.so
           path: libs/x86/libhev-socks5-tunnel.so
           if-no-files-found: error
-          retention-days: 5
+          retention-days: 7
 
       - name: Upload x86_64
         uses: actions/upload-artifact@v4
@@ -56,4 +56,4 @@ jobs:
           name: libhev-socks5-tunnel-android-x86_64.so
           path: libs/x86_64/libhev-socks5-tunnel.so
           if-no-files-found: error
-          retention-days: 5
+          retention-days: 7
